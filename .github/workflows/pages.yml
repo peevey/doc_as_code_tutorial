@@ -1,0 +1,55 @@
+name: Dokumentation veröffentlichen
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+
+      - name: Asciidoctor installieren
+        run: gem install asciidoctor --version 2.0.26 --no-document
+
+      - name: Website erzeugen
+        run: |
+          mkdir -p _site/assets/images
+          cp -a assets/images/. _site/assets/images/
+          asciidoctor --failure-level WARN \
+            -a imagesdir=assets/images \
+            -o _site/index.html \
+            pages/00_tutorial_master.adoc
+          touch _site/.nojekyll
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Auf GitHub Pages veröffentlichen
+        id: deployment
+        uses: actions/deploy-pages@v4
