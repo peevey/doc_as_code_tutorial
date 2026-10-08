@@ -3,8 +3,6 @@ Hiermit habt ihr das kleine Tutorial zu *Doc as Code* erfolgreich beendet! icon:
 
 Ich hoffe, dass ihr einen guten Einblick in die Arbeit mit *asciidoc* gewinnen konntet, und das Tutorial die Grundzüge des *Doc as Code*-Ansatzes vermittelt konnte.
 
-Bei Fragen könnt ihr euch gerne melden: alex.kurzke@hiq.de
-
 Natürlich konnten wir vieles nur oberflächlich anschauen,  wer aber Gefallen an der Arbeit mit *asciidoc* gefunden hat, dem seien daher als Impuls noch folgende interessante Themen und Links mitgegeben:
 
 * individuelles Styling des HTML mittels css-Styleheets
