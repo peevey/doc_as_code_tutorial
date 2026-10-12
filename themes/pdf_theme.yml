@@ -72,20 +72,20 @@ vertical_rhythm: $base_line_height_length
 horizontal_rhythm: $base_line_height_length
 link:
   font_color: 428BCA
-# literal is currently used for inline monospaced in prose and table cells
-literal:
+# codespan is currently used for inline monospaced in prose and table cells
+codespan:
   font_color: B12146
   font_family: M+ 1mn
 button:
   content: "[\u2009%s\u2009]"
   font_style: bold
-key:
+kbd:
   background_color: F5F5F5
   border_color: CCCCCC
   border_offset: 2
   border_radius: 2
   border_width: 0.5
-  font_family: $literal_font_family
+  font_family: $codespan_font_family
   separator: "\u202f+\u202f"
 mark:
   background_color: FFFF00
@@ -169,29 +169,29 @@ admonition:
   label:
     text_transform: uppercase
     font_style: bold
-blockquote:
+quote:
   font_size: $base_font_size_large
   border_color: $base_border_color
   border_width: 0
   border_left_width: 5
   # FIXME disable negative padding bottom once margin collapsing is implemented
-  padding: [0, $horizontal_rhythm, $block_margin_bottom * -0.75, $horizontal_rhythm + $blockquote_border_left_width / 2]
+  padding: [0, $horizontal_rhythm, $block_margin_bottom * -0.75, $horizontal_rhythm + $quote_border_left_width / 2]
   cite:
     font_size: $base_font_size_small
     font_color: $role_subtitle_font_color
 verse:
-  font_size: $blockquote_font_size
-  border_color: $blockquote_border_color
-  border_width: $blockquote_border_width
-  border_left_width: $blockquote_border_left_width
-  padding: $blockquote_padding
+  font_size: $quote_font_size
+  border_color: $quote_border_color
+  border_width: $quote_border_width
+  border_left_width: $quote_border_left_width
+  padding: $quote_padding
   cite:
-    font_size: $blockquote_cite_font_size
-    font_color: $blockquote_cite_font_color
+    font_size: $quote_cite_font_size
+    font_color: $quote_cite_font_color
 # code is used for source blocks (perhaps change to source or listing?)
 code:
   font_color: $base_font_color
-  font_family: $literal_font_family
+  font_family: $codespan_font_family
   font_size: ceil($base_font_size)
   padding: $code_font_size
   line_height: 1.25
@@ -204,8 +204,8 @@ code:
   callout_list:
     margin_top: -$block_margin_bottom / 2
 conum:
-  font_family: $literal_font_family
-  font_color: $literal_font_color
+  font_family: $codespan_font_family
+  font_color: $codespan_font_color
   font_size: $base_font_size
   line_height: 4 / 3
   glyphs: circled
@@ -242,10 +242,10 @@ description_list:
   term_font_style: bold
   term_spacing: $vertical_rhythm / 4
   description_indent: $horizontal_rhythm * 1.25
-outline_list:
+list:
   indent: $horizontal_rhythm * 1.5
   #marker_font_color: 404040
-  # NOTE outline_list_item_spacing applies to list items that do not have complex content
+  # NOTE list_item_spacing applies to list items that do not have complex content
   item_spacing: $vertical_rhythm / 2
 table:
   background_color: $page_background_color
@@ -268,7 +268,7 @@ toc:
     #levels: 2 3
 footnotes:
   font_size: round($base_font_size * 0.75)
-  item_spacing: $outline_list_item_spacing / 2
+  item_spacing: $list_item_spacing / 2
 header:
   font_size: $base_font_size_small
   height: $base_line_height_length * 2.5

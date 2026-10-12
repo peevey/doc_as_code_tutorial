@@ -23,6 +23,12 @@
 :pdf-fontsdir: font/noto_sans;GEM_FONTS_DIR
 :pdf-theme: pdf_theme.yml
 
+ifdef::backend-html5[]
+ifdef::pdf-download[]
+link:{pdf-download}[Tutorial als PDF herunterladen]
+endif::[]
+endif::[]
+
 include::kap_tutorial_ziel.adoc[]
 
 <<<

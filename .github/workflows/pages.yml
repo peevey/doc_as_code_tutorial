@@ -24,9 +24,10 @@ jobs:
         with:
           ruby-version: '3.3'
 
-      - name: Asciidoctor und Rouge installieren
+      - name: Asciidoctor, PDF-Konverter und Rouge installieren
         run: |
           gem install asciidoctor --version 2.0.26 --no-document
+          gem install asciidoctor-pdf --version 2.3.24 --no-document
           gem install rouge --version 4.6.1 --no-document
 
       - name: Website erzeugen
@@ -35,9 +36,20 @@ jobs:
           cp -a assets/images/. _site/assets/images/
           asciidoctor --failure-level WARN \
             -a imagesdir=assets/images \
+            -a pdf-download=doc_as_code_tutorial.pdf \
             -o _site/index.html \
             pages/00_tutorial_master.adoc
           touch _site/.nojekyll
+
+      - name: PDF erzeugen
+        run: bash scripts/build-pdf.sh _site/doc_as_code_tutorial.pdf
+
+      - name: PDF als Build-Artefakt bereitstellen
+        uses: actions/upload-artifact@v4
+        with:
+          name: doc_as_code_tutorial-pdf
+          path: _site/doc_as_code_tutorial.pdf
+          if-no-files-found: error
 
       - uses: actions/configure-pages@v5
 
